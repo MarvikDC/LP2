@@ -54,7 +54,7 @@ int kmenor(int *array, int size, int k)
 }
 
 
-//--------------------------------------
+
 
 bool is_pal(char *str)
 {
@@ -73,7 +73,7 @@ bool is_pal(char *str)
 	return 1;
 }
 
-//------------------------------------------
+
 
 
 int potencia(int base, int exp)
@@ -118,12 +118,7 @@ int main()
 	cout<<kmenor(array,arraysize,k)<<endl;
 
 
-//----------------------------------	
-/*	char* palabra='a';
-	bol(palabra);
-	
-	*/
-//----------------------------
+
 	
 	int prueba=potencia(2,4);
 	cout<<prueba<<endl;
