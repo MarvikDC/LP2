@@ -56,7 +56,7 @@ bool binary_search_r(int *A, int n, int x, int i=0)
 }
 
 
-// ordenamiento bubble
+	// ordenamiento bubble
 void bubble_sort(int *A, int n)
 {
 	int aux,j;
@@ -81,45 +81,52 @@ void bubble_sort(int *A, int n)
 }
 
 //ordenamiento selection
+
 void selection_sort(int *A, int n)
 {
-	int min, aux;
-	for (int k=0;k<n;k++)
+	int i=0,j, pmin, min;
+	while(i<n-1)
 	{
-		min=A[k];
-		int i=k+1;
-		for(i;i<n;i++)
+		pmin=i;
+		j=i+1;
+		while(j<n)
 		{
-			if(A[i]<min)
+			if (A[j]<A[pmin])
 			{
-				min=A[i];
+				pmin=j;
 			}
-			aux=A[k];
-			A[k]=min;
-			A[i]=aux;
+			j++;
 		}
+	if (pmin!=i)
+	{
+		min=A[pmin];
+		A[pmin]=A[i];
+		A[i]=min;
+	}
+	i++;
 	}
 	
-	
 }
+
 
 //ordenamiento insertion
 void insertion_sort(int *A, int n)
 {
-	int aux,j;
-	for(int i=0;i<=n+1;i++)
+	int j=1, i, aux;
+	while(j<n)
 	{
-		j=i;
-		while(A[j-1]>A[j]||j>=0)
+		i=j-1;
+		aux=A[j];
+		while (aux<A[i]&&i>=0)
 		{
-			aux=A[j];
-			A[j]=A[j-1];
-			A[j-1]=aux;
-			j--;
+			A[i+1]=A[i];
+			A[i]=aux;
+			i--;
 		}
+		j++;
 	}
+	
 }
-
 
 
 int main()
