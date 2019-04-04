@@ -8,6 +8,7 @@ using namespace std;
 
 int *TA;
 int *TB;
+int *A2;
 typedef void(*fun_sort)(int*,int);
 bool test_sort(fun_sort sort, const int *A, int n)
 {
@@ -98,7 +99,7 @@ void insertion_sort(int *A, int n)
 void merge(int *A, int i, int m, int j)
 {
 
-	int in, p, k, A2[j-i+1];
+	int in, p, k;//, A2[j-i+1];
 	in = i;
 	k = 0;
 	p = m + 1;
@@ -163,6 +164,7 @@ int main()
 	int *A=new int[N];
 	TA=new int[N];
 	TB=new int[N];
+	A2=new int[N];
 	srand(time(NULL));
 	fun_sort sort[4]={bubble_sort,selection_sort,insertion_sort, merge_sort};
 	for(int n=100;n<N;n*=10)
@@ -180,5 +182,6 @@ int main()
 	}
 	delete[]TA;
 	delete[]TB;
+	delete[]A2;
 	return 0;
 }
