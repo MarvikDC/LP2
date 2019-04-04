@@ -94,6 +94,68 @@ void insertion_sort(int *A, int n)
 	}
 	
 }
+//ordenamineto merge
+void merge(int *A, int i, int m, int j)
+{
+
+	int in, p, k, A2[j-i+1];
+	in = i;
+	k = 0;
+	p = m + 1;
+
+	while (in <= m && p <= j)
+	{
+		if (A[in] < A[p])
+		{
+			A2[k] = A[in];
+			k++;
+			in++;
+		}
+		else
+		{
+			A2[k] = A[p];
+			k++;
+			p++;
+		}
+	}
+ 
+	while (in <= m)
+	{
+		A2[k] = A[in];
+		k++;
+		in++;
+	}
+
+	while (p <= j)
+	{
+		A2[k] = A[p];
+		k++;
+		p++;
+	}
+
+	for (int t = i; t <= j; t++)
+	{
+		A[t] = A2[t-i];
+	}
+}
+ 
+void merge_sort(int *A, int i, int j)
+{
+	
+	if (i == j) return;
+	int m=(i+j)/2;
+	merge_sort(A, i, m);
+	merge_sort(A, m+1, j);
+	merge(A, i, m, j);
+	
+}
+//--------
+void merge_sort(int *A, int n)
+{
+int i=0, j=n-1;
+merge_sort(A,i,j);
+
+}
 //--------------------
 int N=100000;
 int main()
@@ -102,13 +164,13 @@ int main()
 	TA=new int[N];
 	TB=new int[N];
 	srand(time(NULL));
-	fun_sort sort[3]={bubble_sort,selection_sort,insertion_sort};
+	fun_sort sort[4]={bubble_sort,selection_sort,insertion_sort, merge_sort};
 	for(int n=100;n<N;n*=10)
 	{
 		for(int i=0;i<n;i++)
 			A[i]=rand()%n;
 		cout<<n<<"  ";
-		for(int s=0;s<3;s++)
+		for(int s=0;s<4;s++)
 			if(!test_sort(sort[s],A,n))
 			{	
 				cout<<"FAIL\n";
