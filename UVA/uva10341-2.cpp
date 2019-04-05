@@ -10,15 +10,15 @@ double f(double x){
   return p*exp(-x) + q*sin(x) + r*cos(x) + s*tan(x) + t*x*x + u;
 }
 
-double fd(double x){ // the derivative of function f
+double fd(double x){ 
   return -p*exp(-x) + q*cos(x) - r*sin(x) + s/(cos(x)*cos(x)) + 2*t*x;
 }
 
 double newton(){
   if (f(0)==0) return 0;
-  for (double x=0.5; ;){             // initial guess x = 0.5
-    double x1 = x - f(x)/fd(x);      // x1 = next guess
-    if (fabs(x1-x) < EPS) return x;  // the guess is accurate enough
+  for (double x=0.5; ;){             
+    double x1 = x - f(x)/fd(x);      
+    if (fabs(x1-x) < EPS) return x;  
     x = x1;
   }
 }
