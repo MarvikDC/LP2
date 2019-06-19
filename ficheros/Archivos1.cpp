@@ -8,7 +8,7 @@ using namespace std;
 struct A
 {
 	int x;
-	char str[100];
+	string str;
 
 	 friend ostream &operator<<(ostream &o, const A &p)
 	{
@@ -44,7 +44,7 @@ void bin_save_array(vector<A> Va1)
 	fsbin.open("binout.dat",ios::binary);
 	for(int i=0; i<Va1.size();i++)
 		{
-			fsbin.write((char*)&Va1[i],sizeof(A));
+			fsbin.write((char*)&Va1[i],sizeof(Va1));
 		}
 	fsbin.close();
 }
@@ -76,15 +76,8 @@ void bin_load_array(vector<A> &Va2)
 		Va2.push_back(load);
 		gg++;
 	}*/
-	;
-    while (binfs.read((char*)&load,sizeof(A)))
-    {
-
-        Va2.push_back(load);
-
-    }
-
-
+	int i=0;
+	binfs.read((char*)&Va2[i],sizeof(A));
 
 
 	binfs.close();
@@ -95,31 +88,30 @@ int main()
 {
 	A a;
 	vector<A> Va;
-
-	bin_load_array(Va);
+	vector<A> Vab;
+	vector<A> Vabin;
 	int cont=0;
-	cin>>cont;
-	while (cont--)
+	while (cont<3)
 	{
 		cin>>a;
 		Va.push_back(a);
-
+		cont++;
 	}
-	//save_array(Va);
+	save_array(Va);
+	bin_save_array(Va);
 
+	load_array(Vab);
+    cout<<"carga"<<endl;
 
-   // cout<<"carga"<<endl;
+	for(int j=0;j<Vab.size()-1;j++)
+        cout<<Vab[j]<<endl;
 
-	for(int j=0;j<Va.size();j++)
-        cout<<Va[j]<<endl;
-bin_save_array(Va);
-
-   /* cout<<"carga binaria"<<endl;
+    cout<<"carga binaria"<<endl;
     bin_load_array(Vabin);
     for(int j=0;j<Vabin.size();j++)
         cout<<Vab[j]<<endl;
 
-*/
+
 	//load_array(Va);
 	return 0;
 }
